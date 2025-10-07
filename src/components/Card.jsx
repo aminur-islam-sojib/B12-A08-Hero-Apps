@@ -1,21 +1,21 @@
+import { Link } from 'react-router-dom';
 import DownloadIcon from '../assets/icon-downloads.png';
 import starIcon from '../assets/icon-ratings.png';
 
 const Card = ({ data }) => {
-  console.log(data);
-
   return (
     <div className=" grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-5">
       {data.map((d) => (
-        <div
+        <Link
+          to={`/Details/${d.id}`}
           key={d.id}
           className="card bg-base-100  shadow-md group transition-all hover:-translate-y-3 duration-700"
         >
-          <figure className=" h-[256px] w-auto p-3 overflow-hidden">
+          <figure className=" h-[256px] w-auto p-3 pb-0 overflow-hidden">
             <img
               className="h-[100%] w-full object-cover rounded"
               src={d?.image}
-              alt={d.companyName}
+              alt={d.title}
               onError={(e) => {
                 e.currentTarget.onerror = null;
                 e.currentTarget.src = '/logo.png';
@@ -23,7 +23,7 @@ const Card = ({ data }) => {
             />
           </figure>
           <div className=" p-3">
-            <h2 className="card-title">{d.companyName}</h2>
+            <h2 className="card-title">{d.title}</h2>
 
             <div className=" flex justify-between mt-2 font-medium">
               <div className=" text-sm flex items-center gap-1 bg-[#F1F5E8] text-[#00D390] px-1 rounded">
@@ -36,7 +36,7 @@ const Card = ({ data }) => {
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
