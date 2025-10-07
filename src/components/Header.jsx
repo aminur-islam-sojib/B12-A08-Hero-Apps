@@ -15,14 +15,22 @@ const Header = () => {
           into digital experiences that truly make an impact.
         </div>
         <div className=" flex justify-center mt-10 gap-5">
-          <button className=" border py-2 px-3 rounded border-gray-400">
-            <a href="" className=" flex gap-2 items-center">
+          <button className=" border py-2 px-3 rounded border-gray-400  hover:bg-gray-400 transition duration-300">
+            <a
+              href="https://play.google.com"
+              target=" _blank"
+              className=" flex gap-2 items-center"
+            >
               {' '}
               <img src={GPlay} alt="" /> <span>Google Play</span>
             </a>{' '}
           </button>
-          <button className=" border py-2 px-3 rounded border-gray-400">
-            <a href="" className=" flex gap-2 items-center">
+          <button className=" border py-2 px-3 rounded border-gray-400 hover:bg-gray-400 transition duration-300">
+            <a
+              href="https://apps.apple.com"
+              target=" _blank"
+              className=" flex gap-2 items-center"
+            >
               <img src={AppStore} alt="" />
               <span>App Store</span>
             </a>
