@@ -1,6 +1,6 @@
 [
   {
-    "image": "https://source.unsplash.com/featured/?fitness,app",
+    "image": "https://www.google.com/imgres?q=image&imgurl=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2024%2F05%2F26%2F10%2F15%2Fbird-8788491_1280.jpg&imgrefurl=https%3A%2F%2Fpixabay.com%2Fphotos%2Fbird-blue-clouds-weather-pen-8788491%2F&docid=UHcUa7a-6-cYRM&tbnid=90TpIHBM_bySlM&vet=12ahUKEwjc1Jq1uZKQAxXxwzgGHfneB6wQM3oECCcQAA..i&w=1280&h=853&hcb=2&ved=2ahUKEwjc1Jq1uZKQAxXxwzgGHfneB6wQM3oECCcQAA",
     "title": "FitTrack Pro",
     "companyName": "WellTech Labs",
     "id": 1,
@@ -18,7 +18,7 @@
     ]
   },
   {
-    "image": "https://source.unsplash.com/featured/?music,app",
+    "image": "https://unsplash.com/photos/young-lion-peeking-through-dry-grass-6uRBk_BpZY4",
     "title": "TuneWave",
     "companyName": "Harmony Studio",
     "id": 2,
@@ -36,7 +36,7 @@
     ]
   },
   {
-    "image": "https://source.unsplash.com/featured/?education,app",
+    "image": "https://unsplash.com/photos/a-coiled-ethernet-cable-with-a-connector-NC8uSRDS3f0",
     "title": "Learnly",
     "companyName": "MindBloom",
     "id": 3,

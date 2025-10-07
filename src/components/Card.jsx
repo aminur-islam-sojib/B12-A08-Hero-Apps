@@ -8,7 +8,7 @@ const Card = ({ data }) => {
       {data.map((d) => (
         <div key={d.id} className="card bg-base-100  shadow-sm">
           <figure>
-            <img src={d.image} alt={d.companyName} />
+            <img src={d?.image} alt={d.companyName} />
           </figure>
           <div className="card-body">
             <h2 className="card-title">
