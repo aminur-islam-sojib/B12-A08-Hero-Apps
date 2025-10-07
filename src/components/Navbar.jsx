@@ -1,8 +1,10 @@
-import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import Logo from '../assets/logo.png';
+import { GrGithub } from 'react-icons/gr';
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-100 shadow-sm px-2 md:px-10">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -24,54 +26,88 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow "
           >
             <li>
-              <a>Item 1</a>
+              <NavLink to={'/'} className={` font-medium`}>
+                Home
+              </NavLink>
             </li>
             <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
+              <NavLink to={'/Apps'} className={`  font-medium`}>
+                {' '}
+                Apps
+              </NavLink>
             </li>
             <li>
-              <a>Item 3</a>
+              <NavLink to={'/Installed'} className={` font-medium`}>
+                Installation
+              </NavLink>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link
+          to={'/'}
+          className=" text-xl h-5 md:h-10 overflow-auto flex items-center gap-2"
+        >
+          <img src={Logo} alt="" className=" h-[100%] w-auto" />{' '}
+          <span className=" font-medium gradient-text">AppNest</span>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className=" flex gap-5 px-1">
           <li>
-            <a>Item 1</a>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `relative bottomBar font-medium ${
+                  isActive ? 'gradient-text' : 'text-black'
+                }`
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
+            <NavLink
+              to={'/Apps'}
+              className={({ isActive }) =>
+                `relative bottomBar font-medium ${
+                  isActive ? 'gradient-text' : 'text-black'
+                }`
+              }
+            >
+              Apps
+            </NavLink>
           </li>
           <li>
-            <a>Item 3</a>
+            <NavLink
+              to={'/Installed'}
+              className={({ isActive }) =>
+                `relative bottomBar font-medium ${
+                  isActive ? 'gradient-text' : 'text-black'
+                }`
+              }
+            >
+              Installation
+            </NavLink>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <div className="navbar-end">
+          <a
+            href="https://github.com/aminur-islam-sojib"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btnGradient"
+          >
+            <span className=" flex text-center items-center gap-2">
+              {' '}
+              <GrGithub /> Contribute
+            </span>
+          </a>
+        </div>
       </div>
     </div>
   );

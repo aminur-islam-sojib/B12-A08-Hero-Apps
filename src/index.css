@@ -1,2 +1,37 @@
 @import 'tailwindcss';
 @plugin "daisyui";
+
+.gradient-text {
+  background: linear-gradient(90deg, #632ee3 0%, #9f62f2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bottomBar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px; /* positions the bar just below text */
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #632ee3 0%, #9f62f2 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.bottomBar:hover::after {
+  width: 100%;
+}
+.gradient-text.bottomBar::after {
+  width: 100%;
+}
+
+.btnGradient {
+  padding: 0.3rem 0.6rem;
+  background: linear-gradient(90deg, #632ee3 0%, #9f62f2 100%);
+  color: white;
+  font-weight: 600;
+  border-radius: 5px;
+}
+.btnGradient:hover {
+  opacity: 0.8;
+}
