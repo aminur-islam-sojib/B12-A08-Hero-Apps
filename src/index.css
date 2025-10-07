@@ -42,3 +42,6 @@
 .btnGradient:hover {
   opacity: 0.8;
 }
+.bgGradient {
+  background: linear-gradient(90deg, #632ee3 0%, #9f62f2 100%);
+}
