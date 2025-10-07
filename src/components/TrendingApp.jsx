@@ -17,14 +17,6 @@ const TrendingApp = () => {
       <div className=" mt-10">
         <Card data={trendingAppData} />
       </div>
-      <div>
-        {data.map((d) => (
-          <div>
-            <h1>{d.companyName}</h1>
-            <img src={d?.image} alt={d.companyName} />
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
