@@ -5,7 +5,7 @@ const NoApp = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col py-20">
       <div className=" flex  flex-col justify-center items-center flex-1 text-center bg-gray-100">
         <figure className=" h-50 w-auto">
           <img
