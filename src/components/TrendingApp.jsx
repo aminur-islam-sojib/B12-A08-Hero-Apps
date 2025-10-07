@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import useData from '../Hooks/useData';
 import Card from './Card';
 
@@ -16,6 +17,11 @@ const TrendingApp = () => {
       </div>
       <div className=" mt-10">
         <Card data={trendingAppData} />
+      </div>
+      <div className=" mt-10 flex justify-center items-center">
+        <Link to={'/Apps'} className="btnGradient">
+          See All...
+        </Link>
       </div>
     </div>
   );
