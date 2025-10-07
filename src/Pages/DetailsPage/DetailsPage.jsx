@@ -13,6 +13,7 @@ import StarIcon from '../../assets/icon-ratings.png';
 import ReviewsIcon from '../../assets/icon-review.png';
 import { useState, useEffect } from 'react';
 import Toast from '../../components/Toast';
+import NoApp from '../../components/NoApp';
 
 const DetailsPage = () => {
   const { id } = useParams();
@@ -47,8 +48,24 @@ const DetailsPage = () => {
     setInstall(true);
     setToast(true);
 
-    setTimeout(() => setToast(false), 5000);
+    setTimeout(() => setToast(false), 2000);
   };
+
+  if (data.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  if (!filteredData) {
+    return (
+      <div className=" mt-10">
+        <NoApp />
+      </div>
+    );
+  }
 
   return (
     <div className="p-5 sm:p-10 md:p-15 flex flex-col gap-10">

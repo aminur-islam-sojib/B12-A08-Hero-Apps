@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ErrorImage from '../assets/App-Error.png';
 
 const NoApp = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col ">
       <div className=" flex  flex-col justify-center items-center flex-1 text-center bg-gray-100">
@@ -18,9 +20,17 @@ const NoApp = () => {
             The App you are requesting is not found on our system. please try
             another apps
           </p>
-          <Link to={'/'} className="btnGradient mt-15">
-            Go back
-          </Link>
+          <div className="flex gap-4 justify-center items-center">
+            <button
+              onClick={() => navigate('/Apps')}
+              className="btn btn-accent text-white"
+            >
+              Browse All Apps
+            </button>
+            <button onClick={() => navigate('/')} className="btn bg-gray-300">
+              Go Home
+            </button>
+          </div>
         </div>
       </div>
     </div>
