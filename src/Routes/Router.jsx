@@ -1,11 +1,13 @@
 import { createBrowserRouter } from 'react-router';
-import { RouterProvider } from 'react-router/dom';
-import MainLayout from '../Layout/MainLayout';
-import Home from '../Pages/Home/Home';
-import Apps from '../Pages/Apps/Apps';
-import Installed from '../Pages/Installed/Installed';
-import DetailsPage from '../Pages/DetailsPage/DetailsPage';
 import ErrorPage from '../Pages/ErrorPage/ErrorPage';
+import { lazy, Suspense } from 'react';
+import Loading from '../components/Loading';
+
+const MainLayout = lazy(() => import('../Layout/MainLayout'));
+const Home = lazy(() => import('../Pages/Home/Home'));
+const Apps = lazy(() => import('../Pages/Apps/Apps'));
+const Installed = lazy(() => import('../Pages/Installed/Installed'));
+const DetailsPage = lazy(() => import('../Pages/DetailsPage/DetailsPage'));
 
 export const router = createBrowserRouter([
   {
@@ -13,10 +15,38 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Home /> },
-      { path: '/Apps', element: <Apps /> },
-      { path: '/Installed', element: <Installed /> },
-      { path: '/Details/:id', element: <DetailsPage /> },
+      {
+        index: true,
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Home />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/Apps',
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Apps />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/Installed',
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Installed />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/Details/:id',
+        element: (
+          <Suspense fallback={<Loading />}>
+            <DetailsPage />
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);

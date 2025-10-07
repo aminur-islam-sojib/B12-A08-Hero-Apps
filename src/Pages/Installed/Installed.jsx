@@ -11,6 +11,7 @@ const Installed = () => {
 
   useEffect(() => {
     loadInstalledApps();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const loadInstalledApps = () => {
