@@ -74,7 +74,7 @@ const Installed = () => {
   }
 
   return (
-    <div className="px-10 py-8">
+    <div className=" px-3 md:px-10 py-8">
       <div className="mb-8">
         <h1 className="text-4xl font-bold text-center">Your Installed Apps</h1>
         <p className="mt-2 text-gray-500 text-center">
@@ -89,7 +89,10 @@ const Installed = () => {
 
         {installedApps.length > 0 && (
           <div className="flex items-center gap-2">
-            <label htmlFor="sort" className="text-gray-700 font-medium">
+            <label
+              htmlFor="sort"
+              className="text-gray-700 font-medium hidden sm:block"
+            >
               Sort by Downloads:
             </label>
             <select
@@ -115,32 +118,38 @@ const Installed = () => {
           {installedApps.map((app) => (
             <div
               key={app.id}
-              className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+              className="bg-white border border-gray-200 rounded-lg p-2 md:p-6 shadow-sm hover:shadow-md transition-shadow"
             >
-              <div className="flex items-center gap-4">
-                <div className="w-25 h-25 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <div className=" h-40 w-full sm:w-25 sm:h-25  bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
                   <img
                     src={app.image}
                     alt=""
-                    className="h-full w-auto object-cover rounded"
+                    className="h-full w-full object-cover rounded"
                   />
                 </div>
 
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-1">
-                    {app.title}
-                  </h3>
-                  <div className="flex gap-4 mt-2 font-medium">
-                    <div className="text-sm flex items-center gap-1 bg-[#F1F5E8] text-[#00D390] px-1 rounded">
-                      <img src={DownloadIcon} className="h-3" alt="downloads" />
-                      <span>{app.downloads}M</span>
-                    </div>
-                    <div className="text-sm flex items-center gap-1 bg-[#FFF0E1] text-[#FF8811] px-1 rounded">
-                      <img src={starIcon} className="h-3" alt="rating" />
-                      <span>{app.ratingAvg}</span>
-                    </div>
-                    <div>
-                      <h1 className="text-gray-500">{app.size} MB</h1>
+                  <div className=" flex  flex-col justify-center items-center sm:items-start ">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                      {app.title}
+                    </h3>
+                    <div className="flex gap-4 mt-2 font-medium">
+                      <div className="text-sm flex items-center gap-1 bg-[#F1F5E8] text-[#00D390] px-1 rounded">
+                        <img
+                          src={DownloadIcon}
+                          className="h-3"
+                          alt="downloads"
+                        />
+                        <span>{app.downloads}M</span>
+                      </div>
+                      <div className="text-sm flex items-center gap-1 bg-[#FFF0E1] text-[#FF8811] px-1 rounded">
+                        <img src={starIcon} className="h-3" alt="rating" />
+                        <span>{app.ratingAvg}</span>
+                      </div>
+                      <div>
+                        <h1 className="text-gray-500">{app.size} MB</h1>
+                      </div>
                     </div>
                   </div>
                 </div>
