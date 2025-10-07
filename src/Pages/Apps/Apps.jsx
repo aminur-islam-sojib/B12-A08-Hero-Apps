@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useData from '../../Hooks/useData';
 import Card from '../../components/Card';
+import NoApp from '../../components/NoApp';
 
 const Apps = () => {
   const { data } = useData();
@@ -83,9 +84,7 @@ const Apps = () => {
         ) : filteredData.length > 0 ? (
           <Card data={filteredData} />
         ) : (
-          <div className="text-center py-20 text-gray-500">
-            <p className="text-xl">No apps found matching "{searchQuery}"</p>
-          </div>
+          <div className="text-center py-20 text-gray-500">{<NoApp />}</div>
         )}
       </div>
     </div>
