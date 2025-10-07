@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-[#001931] via-[#002447] to-[#001931] text-white ">
-      {/* Wave Design */}
       <div className="relative">
         <svg
           className="w-full h-16 md:h-24 text-white"
@@ -27,11 +26,8 @@ const Footer = () => {
         </svg>
       </div>
 
-      {/* Main Footer Content */}
       <div className="container mx-auto px-5 sm:px-10 md:px-20 pb-10">
-        {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
-          {/* Brand Section */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <img

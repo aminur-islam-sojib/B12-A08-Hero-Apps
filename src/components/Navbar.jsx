@@ -48,7 +48,7 @@ const Navbar = () => {
         </div>
         <Link
           to={'/'}
-          className=" text-xl h-5 md:h-10 overflow-auto flex items-center gap-2"
+          className=" text-xl h-5 md:h-10 overflow-hidden flex items-center gap-2 "
         >
           <img src={Logo} alt="" className=" h-[100%] w-auto" />{' '}
           <span className=" font-medium gradient-text">AppNest</span>
