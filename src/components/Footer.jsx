@@ -17,7 +17,7 @@ const Footer = () => {
             <h1 className=" text-2xl font-bold">AppNest</h1>
           </figure>
         </div>
-        <div className=" social-icons flex gap-5 mt-5">
+        <div className=" social-icons flex gap-5 my-5 md:my-6">
           <a
             href="https://www.facebook.com"
             target="_blank"

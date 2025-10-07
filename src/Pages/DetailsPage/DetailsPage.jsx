@@ -90,18 +90,18 @@ const DetailsPage = () => {
           <hr className="text-gray-500 my-5" />
 
           {/* Stats Section */}
-          <div className="mt-5 grid sm:grid-cols-3 justify-center items-center gap-5 md:gap-15 p-5 md:p-0">
-            <div className="flex flex-col gap-1">
-              <figure className="w-10 h-10">
+          <div className="mt-5 grid sm:grid-cols-3 justify-center items-center gap-15 md:gap-15 p-5 md:p-0">
+            <div className="flex flex-col gap-1 justify-center items-center md:items-start">
+              <figure className="w-10 h-10 ">
                 <img src={DownloadIcon} className="w-auto h-auto" />
               </figure>
-              <p className="text-gray-700 text-sm mt-2">Downloads</p>
-              <h1 className="text-4xl font-extrabold text-[#001931]">
+              <p className="text-gray-700 text-sm mt-2 ">Downloads</p>
+              <h1 className="text-4xl font-extrabold text-[#001931] ">
                 {filteredData?.downloads}M
               </h1>
             </div>
 
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 justify-center items-center md:items-start">
               <figure className="w-10 h-10">
                 <img src={StarIcon} className="w-auto h-auto" />
               </figure>
@@ -111,7 +111,7 @@ const DetailsPage = () => {
               </h1>
             </div>
 
-            <div className="flex flex-col gap-1 justify-center">
+            <div className="flex flex-col gap-1 justify-center items-center md:items-start">
               <figure className="w-10 h-10">
                 <img src={ReviewsIcon} className="w-auto h-auto" />
               </figure>
@@ -141,7 +141,7 @@ const DetailsPage = () => {
 
       {/* ReChart  */}
 
-      <div className="h-[400px] w-full p-5">
+      <div className="h-[400px] w-full md:p-5">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={chartData?.slice().reverse()}
