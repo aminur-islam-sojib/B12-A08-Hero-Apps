@@ -3,11 +3,15 @@ import useData from '../../Hooks/useData';
 import NoApp from '../../components/NoApp';
 import DownloadIcon from '../../assets/icon-downloads.png';
 import starIcon from '../../assets/icon-ratings.png';
+import Loading from '../../components/Loading';
+import Toast from '../../components/Toast';
 
 const Installed = () => {
   const { data } = useData();
   const [installedApps, setInstalledApps] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [toast, setToast] = useState(null);
 
   useEffect(() => {
     loadInstalledApps();
@@ -19,42 +23,30 @@ const Installed = () => {
 
     setTimeout(() => {
       const storedId = localStorage.getItem('Installed');
-
       const installedIds = storedId ? JSON.parse(storedId) : [];
-
       const filteredApps = data.filter((app) => installedIds.includes(app.id));
-
       setInstalledApps(filteredApps);
       setIsLoading(false);
     }, 500);
   };
 
-  const handleUninstall = (appId, appTitle) => {
-    if (window.confirm(`Are you sure you want to uninstall "${appTitle}"?`)) {
-      // Get current installed IDs
-      const storedId = localStorage.getItem('Installed');
-      const installedIds = storedId ? JSON.parse(storedId) : [];
+  const handleUninstall = (appId) => {
+    const storedId = localStorage.getItem('Installed');
+    const installedIds = storedId ? JSON.parse(storedId) : [];
+    const updatedIds = installedIds.filter((id) => id !== appId);
+    localStorage.setItem('Installed', JSON.stringify(updatedIds));
+    setInstalledApps((prev) => prev.filter((app) => app.id !== appId));
 
-      // Remove the app ID from the array
-      const updatedIds = installedIds.filter((id) => id !== appId);
-
-      // Update localStorage
-      localStorage.setItem('Installed', JSON.stringify(updatedIds));
-
-      // Remove app from state
-      setInstalledApps((prev) => prev.filter((app) => app.id !== appId));
-
-      // Show success message
-      alert(`"${appTitle}" has been uninstalled successfully!`);
-    }
+    setToast(true);
+    setTimeout(() => {
+      setToast(false);
+    }, 3000);
   };
 
   if (isLoading) {
     return (
-      <div className="px-10 py-20">
-        <div className="flex justify-center items-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-        </div>
+      <div>
+        <Loading />
       </div>
     );
   }
@@ -62,11 +54,9 @@ const Installed = () => {
   return (
     <div className="px-10 py-8">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-center">
-          Installed Applications
-        </h1>
+        <h1 className="text-4xl font-bold text-center">Your Installed Apps</h1>
         <p className="mt-2 text-gray-500 text-center">
-          Manage your installed apps
+          Explore All Trending Apps on the Market developed by us
         </p>
       </div>
 
@@ -135,6 +125,11 @@ const Installed = () => {
                   Uninstall
                 </button>
               </div>
+              {toast && (
+                <Toast
+                  message={`"${app.title}" has been uninstalled successfully!`}
+                />
+              )}
             </div>
           ))}
         </div>

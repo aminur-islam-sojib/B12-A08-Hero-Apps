@@ -176,7 +176,7 @@ const DetailsPage = () => {
         <p className=" mt-5 text-gray-500">{filteredData?.description}</p>
       </div>
 
-      {toast && <Toast />}
+      {toast && <Toast message={'App Installed Successfully!'} />}
     </div>
   );
 };
