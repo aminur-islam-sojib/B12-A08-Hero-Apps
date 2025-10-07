@@ -180,7 +180,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 **Aminur Islam Sojib**
 
 - GitHub: [@aminur-islam-sojib](https://github.com/aminur-islam-sojib)
-- Portfolio: [Your Portfolio Link]
+- Portfolio: [ https://sojib-ahmed.netlify.app ]
 
 ---
 
