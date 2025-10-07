@@ -10,8 +10,9 @@ const Installed = () => {
   const { data } = useData();
   const [installedApps, setInstalledApps] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [sortOption, setSortOption] = useState('none'); // 'none', 'desc', 'asc'
   const [toast, setToast] = useState(null);
+  const [uninstalledApp, setUninstalledApp] = useState('');
 
   useEffect(() => {
     loadInstalledApps();
@@ -30,17 +31,38 @@ const Installed = () => {
     }, 500);
   };
 
-  const handleUninstall = (appId) => {
+  const handleUninstall = (appId, appTitle) => {
     const storedId = localStorage.getItem('Installed');
     const installedIds = storedId ? JSON.parse(storedId) : [];
     const updatedIds = installedIds.filter((id) => id !== appId);
     localStorage.setItem('Installed', JSON.stringify(updatedIds));
     setInstalledApps((prev) => prev.filter((app) => app.id !== appId));
 
+    setUninstalledApp(appTitle);
     setToast(true);
     setTimeout(() => {
       setToast(false);
+      setUninstalledApp('');
     }, 3000);
+  };
+
+  const handleSortChange = (e) => {
+    const selected = e.target.value;
+    setSortOption(selected);
+
+    if (selected === 'none') {
+      // Reload original order
+      loadInstalledApps();
+    } else {
+      const sorted = [...installedApps].sort((a, b) => {
+        if (selected === 'desc') {
+          return b.downloads - a.downloads;
+        } else {
+          return a.downloads - b.downloads;
+        }
+      });
+      setInstalledApps(sorted);
+    }
   };
 
   if (isLoading) {
@@ -60,10 +82,28 @@ const Installed = () => {
         </p>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-6 flex justify-between items-center">
         <h2 className="text-lg font-medium">
           ({installedApps.length}) Apps Installed
         </h2>
+
+        {installedApps.length > 0 && (
+          <div className="flex items-center gap-2">
+            <label htmlFor="sort" className="text-gray-700 font-medium">
+              Sort by Downloads:
+            </label>
+            <select
+              id="sort"
+              value={sortOption}
+              onChange={handleSortChange}
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white cursor-pointer"
+            >
+              <option value="none">Default</option>
+              <option value="desc">High to Low</option>
+              <option value="asc">Low to High</option>
+            </select>
+          </div>
+        )}
       </div>
 
       {installedApps.length === 0 ? (
@@ -71,7 +111,7 @@ const Installed = () => {
           <NoApp />
         </div>
       ) : (
-        <div className="grid grid-cols-1 1 gap-6">
+        <div className="grid grid-cols-1 gap-6">
           {installedApps.map((app) => (
             <div
               key={app.id}
@@ -82,7 +122,7 @@ const Installed = () => {
                   <img
                     src={app.image}
                     alt=""
-                    className=" h-full w-auto object-cover rounded"
+                    className="h-full w-auto object-cover rounded"
                   />
                 </div>
 
@@ -90,17 +130,17 @@ const Installed = () => {
                   <h3 className="text-xl font-semibold text-gray-900 mb-1">
                     {app.title}
                   </h3>
-                  <div className=" flex gap-4 mt-2 font-medium">
-                    <div className=" text-sm flex items-center gap-1 bg-[#F1F5E8] text-[#00D390] px-1 rounded">
-                      <img src={DownloadIcon} className="h-3" />{' '}
+                  <div className="flex gap-4 mt-2 font-medium">
+                    <div className="text-sm flex items-center gap-1 bg-[#F1F5E8] text-[#00D390] px-1 rounded">
+                      <img src={DownloadIcon} className="h-3" alt="downloads" />
                       <span>{app.downloads}M</span>
                     </div>
-                    <div className=" text-sm flex items-center gap-1 bg-[#FFF0E1] text-[#FF8811] px-1 rounded">
-                      <img src={starIcon} className="h-3" />{' '}
+                    <div className="text-sm flex items-center gap-1 bg-[#FFF0E1] text-[#FF8811] px-1 rounded">
+                      <img src={starIcon} className="h-3" alt="rating" />
                       <span>{app.ratingAvg}</span>
                     </div>
                     <div>
-                      <h1 className=" text-gray-500">{app.size} MB</h1>
+                      <h1 className="text-gray-500">{app.size} MB</h1>
                     </div>
                   </div>
                 </div>
@@ -125,14 +165,15 @@ const Installed = () => {
                   Uninstall
                 </button>
               </div>
-              {toast && (
-                <Toast
-                  message={`"${app.title}" has been uninstalled successfully!`}
-                />
-              )}
             </div>
           ))}
         </div>
+      )}
+
+      {toast && (
+        <Toast
+          message={`"${uninstalledApp}" has been uninstalled successfully!`}
+        />
       )}
     </div>
   );
